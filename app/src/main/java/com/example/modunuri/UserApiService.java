@@ -8,7 +8,7 @@ import retrofit2.http.Query;
 
 import java.util.Map;
 
-public interface UserApiService {
+public interface  UserApiService {
 
     // 회원가입 엔드포인트
     @POST("users/signup")
