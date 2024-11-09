@@ -14,9 +14,9 @@ public interface  UserApiService {
     @POST("users/signup")
     Call<Void> signup(@Body UserDTO userDTO);
 
-    // 로그인 체크 엔드포인트
-    @GET("users/checkLogin")
-    Call<Boolean> checkLoginStatus();
+    // 로그인 상태 확인 API
+    @POST("users/checkLogin")
+    Call<Boolean> checkLoginStatus(@Body LoginRequest loginRequest);
 
     // 관심 콘텐츠 추가 엔드포인트
     @POST("users/addFavorite")
