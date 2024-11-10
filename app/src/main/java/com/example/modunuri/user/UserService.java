@@ -2,6 +2,8 @@ package com.example.modunuri.user;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.Field;
+import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 
@@ -9,8 +11,9 @@ public interface UserService {
     @POST("/users/signup")
     Call<Void> registerUser(@Body UserDTO userDTO);
 
+    @FormUrlEncoded
     @POST("/users/login")
-    Call<Void> loginUser(@Body UserDTO userDTO);
+    Call<Void> loginUser(@Field("userId") String userId, @Field("password") String password);
 
     @POST("/users/logout")
     Call<Void> logout();

@@ -29,7 +29,7 @@ public class SignupActivity extends AppCompatActivity {
         passwordField = findViewById(R.id.password);
         signupButton = findViewById(R.id.signup_button);
 
-        userService = ApiClient.getClient("http://your-server-url.com").create(UserService.class);
+        userService = ApiClient.getClient("http://10.0.2.2:8080").create(UserService.class);
 
         signupButton.setOnClickListener(v -> {
             UserDTO user = new UserDTO();

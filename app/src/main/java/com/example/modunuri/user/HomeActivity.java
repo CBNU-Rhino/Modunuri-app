@@ -1,7 +1,10 @@
 package com.example.modunuri.user;
 
+import static android.content.ContentValues.TAG;
+
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -33,7 +36,7 @@ public class HomeActivity extends AppCompatActivity {
         signupButton = findViewById(R.id.signup_button);
         logoutButton = findViewById(R.id.logout_button);
 
-        userService = ApiClient.getClient("http://your-server-url.com").create(UserService.class);
+        userService = ApiClient.getClient("http://10.0.2.2:8080").create(UserService.class);
 
         // 로그인 상태 확인
         checkLoginStatus();
@@ -68,20 +71,26 @@ public class HomeActivity extends AppCompatActivity {
                         // 로그인된 경우 UI 업데이트
                         guestLayout.setVisibility(View.GONE);
                         userLayout.setVisibility(View.VISIBLE);
-                        greetingText.setText("안녕하세요 username님"); // 실제 사용자 이름을 설정
+                        greetingText.setText("안녕하세요");
+
+                        Log.d(TAG, "User is logged in.");  // 로그인 성공 로그
                     } else {
                         // 로그인되지 않은 경우 UI 업데이트
                         guestLayout.setVisibility(View.VISIBLE);
                         userLayout.setVisibility(View.GONE);
+
+                        Log.d(TAG, "User is not logged in.");  // 로그인되지 않은 상태 로그
                     }
                 } else {
                     Toast.makeText(HomeActivity.this, "로그인 상태 확인 실패", Toast.LENGTH_SHORT).show();
+                    Log.d(TAG, "Failed to check login status: " + response.message());  // 실패 시 로그
                 }
             }
 
             @Override
             public void onFailure(Call<Boolean> call, Throwable t) {
                 Toast.makeText(HomeActivity.this, "에러: " + t.getMessage(), Toast.LENGTH_SHORT).show();
+                Log.e(TAG, "Error checking login status: " + t.getMessage());  // 에러 로그
             }
         });
     }

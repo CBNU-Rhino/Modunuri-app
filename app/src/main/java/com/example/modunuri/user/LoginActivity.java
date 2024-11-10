@@ -1,5 +1,6 @@
 package com.example.modunuri.user;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
@@ -16,7 +17,7 @@ import retrofit2.Response;
 
 public class LoginActivity extends AppCompatActivity {
 
-    private EditText usernameField, passwordField;
+    private EditText useridField, passwordField;
     private Button loginButton;
     private UserService userService;
 
@@ -25,24 +26,25 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        usernameField = findViewById(R.id.user_id);
+        useridField = findViewById(R.id.user_id);
         passwordField = findViewById(R.id.password);
         loginButton = findViewById(R.id.login_button);
 
-        userService = ApiClient.getClient("http://your-server-url.com").create(UserService.class);
+        userService = ApiClient.getClient("http://10.0.2.2:8080").create(UserService.class);
 
         loginButton.setOnClickListener(v -> {
-            UserDTO user = new UserDTO();
-            user.setUsername(usernameField.getText().toString());
-            user.setPassword(passwordField.getText().toString());
+            String userId = useridField.getText().toString();
+            String password = passwordField.getText().toString();
 
-            Call<Void> call = userService.loginUser(user);
+            Call<Void> call = userService.loginUser(userId, password);
             call.enqueue(new Callback<Void>() {
                 @Override
                 public void onResponse(Call<Void> call, Response<Void> response) {
                     if (response.isSuccessful()) {
                         Toast.makeText(LoginActivity.this, "로그인 성공!", Toast.LENGTH_SHORT).show();
-                        // 홈 화면으로 이동
+                        Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
+                        startActivity(intent);
+                        finish();
                     } else {
                         Toast.makeText(LoginActivity.this, "로그인 실패!", Toast.LENGTH_SHORT).show();
                     }
