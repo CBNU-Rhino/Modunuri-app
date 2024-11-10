@@ -1,4 +1,4 @@
-package com.example.modunuri;
+package com.example.modunuri.user;
 
 public class UserDTO {
     private String username;
