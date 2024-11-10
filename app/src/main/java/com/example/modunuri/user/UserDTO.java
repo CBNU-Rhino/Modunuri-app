@@ -1,13 +1,20 @@
-// LoginRequest.java
 package com.example.modunuri;
 
-public class LoginRequest {
+public class UserDTO {
+    private String username;
     private String userId;
     private String password;
 
-    public LoginRequest(String userId, String password) {
-        this.userId = userId;
-        this.password = password;
+    // 기본 생성자
+    public UserDTO() {}
+
+    // Getter와 Setter
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getUserId() {
