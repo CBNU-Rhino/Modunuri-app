@@ -36,17 +36,37 @@ public class LoginActivity extends AppCompatActivity {
             String userId = useridField.getText().toString();
             String password = passwordField.getText().toString();
 
-            Call<Void> call = userService.loginUser(userId, password);
-            call.enqueue(new Callback<Void>() {
+            // 로그인 API 호출
+            Call<Void> loginCall = userService.loginUser(userId, password);
+            loginCall.enqueue(new Callback<Void>() {
                 @Override
                 public void onResponse(Call<Void> call, Response<Void> response) {
-                    if (response.isSuccessful()) {
-                        Toast.makeText(LoginActivity.this, "로그인 성공!", Toast.LENGTH_SHORT).show();
-                        Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
-                        startActivity(intent);
-                        finish();
+                    if (response.isSuccessful()) {  // 로그인 API 호출 성공 시
+                        // 로그인 후 상태 확인을 위해 checkLoginStatus 호출
+                        Call<Boolean> checkLoginCall = userService.checkLoginStatus();
+                        checkLoginCall.enqueue(new Callback<Boolean>() {
+                            @Override
+                            public void onResponse(Call<Boolean> call, Response<Boolean> checkResponse) {
+                                if (checkResponse.isSuccessful() && checkResponse.body() != null && checkResponse.body()) {
+                                    // 실제로 로그인 상태인 경우
+                                    Toast.makeText(LoginActivity.this, "로그인 성공!", Toast.LENGTH_SHORT).show();
+                                    Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
+                                    startActivity(intent);
+                                    finish();
+                                } else {
+                                    // 로그인 상태가 아닌 경우 (예: 비정상적 로그인 성공)
+                                    Toast.makeText(LoginActivity.this, "로그인 실패: 잘못된 사용자 정보입니다.", Toast.LENGTH_SHORT).show();
+                                }
+                            }
+
+                            @Override
+                            public void onFailure(Call<Boolean> call, Throwable t) {
+                                Toast.makeText(LoginActivity.this, "로그인 상태 확인 실패: " + t.getMessage(), Toast.LENGTH_SHORT).show();
+                            }
+                        });
                     } else {
-                        Toast.makeText(LoginActivity.this, "로그인 실패!", Toast.LENGTH_SHORT).show();
+                        // 로그인 실패 처리
+                        Toast.makeText(LoginActivity.this, "로그인 실패: 서버 오류", Toast.LENGTH_SHORT).show();
                     }
                 }
 
@@ -56,5 +76,7 @@ public class LoginActivity extends AppCompatActivity {
                 }
             });
         });
+
+
     }
 }
