@@ -26,6 +26,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Sign Up" />
+
     </LinearLayout>
 
     <!-- 로그인된 경우 표시될 환영 메시지와 로그아웃 버튼 -->
@@ -52,5 +53,13 @@
             android:layout_height="wrap_content"
             android:text="Log Out" />
     </LinearLayout>
+
+    <!-- 로그인 상태와 관계없이 항상 보이는 관광지 검색하기 버튼 -->
+    <Button
+        android:id="@+id/tourist_search_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="관광지 검색하기"
+        android:layout_marginTop="20dp" />
 
 </LinearLayout>

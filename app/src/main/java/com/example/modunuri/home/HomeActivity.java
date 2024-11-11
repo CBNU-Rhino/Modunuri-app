@@ -10,6 +10,8 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.modunuri.TouristSearch.TouristSearchActivity;
 import com.example.modunuri.network.ApiClient;
 import com.example.modunuri.R;
 import com.example.modunuri.user.LoginActivity;
@@ -62,6 +64,14 @@ public class HomeActivity extends AppCompatActivity {
             guestLayout.setVisibility(View.VISIBLE);
             userLayout.setVisibility(View.GONE);
         });
+        // HomeActivity.java
+        Button touristSearchButton = findViewById(R.id.tourist_search_button);
+
+        touristSearchButton.setOnClickListener(v -> {
+            Intent intent = new Intent(HomeActivity.this, TouristSearchActivity.class);
+            startActivity(intent);
+        });
+
     }
 
     private void checkLoginStatus() {
