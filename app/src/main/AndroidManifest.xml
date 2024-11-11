@@ -27,7 +27,7 @@
         <activity android:name=".home.HomeActivity" android:exported="true"/>
         <activity android:name=".user.LoginActivity" android:exported="true"/>
         <activity android:name=".user.SignupActivity" android:exported="true"/>
-
+        <activity android:name=".TouristSearch.TouristSearchActivity" />
     </application>
 
 </manifest>

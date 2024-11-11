@@ -4,23 +4,19 @@
     android:layout_height="match_parent"
     android:padding="16dp">
 
-    <!-- 지역 입력 필드 -->
-    <EditText
-        android:id="@+id/region_input"
+    <!-- 지역 선택 드롭다운 -->
+    <Spinner
+        android:id="@+id/region_spinner"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="지역"
-        android:inputType="text"
         android:layout_marginBottom="8dp" />
 
-    <!-- 시군구 입력 필드 -->
-    <EditText
-        android:id="@+id/sigungu_input"
+    <!-- 시군구 선택 드롭다운 -->
+    <Spinner
+        android:id="@+id/sigungu_spinner"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="시/군/구"
-        android:inputType="text"
-        android:layout_below="@id/region_input"
+        android:layout_below="@id/region_spinner"
         android:layout_marginBottom="8dp" />
 
     <!-- 관광지 타입 입력 필드 -->
@@ -30,7 +26,7 @@
         android:layout_height="wrap_content"
         android:hint="관광지 타입 ID (예: 12)"
         android:inputType="number"
-        android:layout_below="@id/sigungu_input"
+        android:layout_below="@id/sigungu_spinner"
         android:layout_marginBottom="8dp" />
 
     <!-- 검색 버튼 -->

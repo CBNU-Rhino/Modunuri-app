@@ -1,42 +1,29 @@
 package com.example.modunuri.TouristSearch;
 
-// TouristInfoResponse.java
-import com.google.gson.annotations.SerializedName;
+import com.example.modunuri.TouristSearch.TouristInfoDTO;
+
 import java.util.List;
 
 public class TouristInfoResponse {
-    @SerializedName("response")
     private ResponseData response;
 
-    public ResponseData getResponse() {
-        return response;
+    public List<TouristInfoDTO> getItems() {
+        if (response != null && response.body != null && response.body.items != null) {
+            return response.body.items.item;
+        }
+        return null;
     }
 
-    public class ResponseData {
-        @SerializedName("body")
+    // 내부 클래스 정의
+    public static class ResponseData {
         private BodyData body;
+    }
 
-        public BodyData getBody() {
-            return body;
-        }
+    public static class BodyData {
+        private ItemsData items;
+    }
 
-        public class BodyData {
-            @SerializedName("items")
-            private ItemsData items;
-
-            public ItemsData getItems() {
-                return items;
-            }
-
-            public class ItemsData {
-                @SerializedName("item")
-                private List<TouristInfoDTO> item;
-
-                public List<TouristInfoDTO> getItem() {
-                    return item;
-                }
-            }
-        }
+    public static class ItemsData {
+        private List<TouristInfoDTO> item;
     }
 }
-
