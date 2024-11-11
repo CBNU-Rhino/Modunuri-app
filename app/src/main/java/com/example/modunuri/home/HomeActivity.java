@@ -1,4 +1,4 @@
-package com.example.modunuri.user;
+package com.example.modunuri.home;
 
 import static android.content.ContentValues.TAG;
 
@@ -12,6 +12,10 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.modunuri.network.ApiClient;
 import com.example.modunuri.R;
+import com.example.modunuri.user.LoginActivity;
+import com.example.modunuri.user.SignupActivity;
+import com.example.modunuri.user.UserService;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;

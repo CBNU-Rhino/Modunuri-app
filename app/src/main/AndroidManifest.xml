@@ -24,7 +24,7 @@
         </activity>
 
         <!-- 추가된 액티비티들 등록 -->
-        <activity android:name=".user.HomeActivity" android:exported="true"/>
+        <activity android:name=".home.HomeActivity" android:exported="true"/>
         <activity android:name=".user.LoginActivity" android:exported="true"/>
         <activity android:name=".user.SignupActivity" android:exported="true"/>
 
