@@ -9,7 +9,8 @@ import retrofit2.http.POST;
 
 public interface UserService {
     @POST("/users/signup")
-    Call<Void> registerUser(@Body UserDTO userDTO);
+    Call<String> registerUser(@Body UserDTO userDTO);
+
 
     @FormUrlEncoded
     @POST("/users/login")

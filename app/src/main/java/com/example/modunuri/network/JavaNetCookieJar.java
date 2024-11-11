@@ -1,10 +1,8 @@
-package com.example.modunuri;
+package com.example.modunuri.network;
 
 import java.io.IOException;
 import java.net.CookieManager;
-import java.net.CookiePolicy;
 import java.net.HttpCookie;
-import java.net.URI;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;

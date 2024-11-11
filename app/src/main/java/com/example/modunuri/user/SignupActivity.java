@@ -1,5 +1,6 @@
 package com.example.modunuri.user;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
@@ -7,7 +8,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.modunuri.ApiClient;
+import com.example.modunuri.network.ApiClient;
 import com.example.modunuri.R;
 
 import retrofit2.Call;
@@ -36,23 +37,28 @@ public class SignupActivity extends AppCompatActivity {
             user.setUsername(usernameField.getText().toString());
             user.setPassword(passwordField.getText().toString());
 
-            Call<Void> call = userService.registerUser(user);
-            call.enqueue(new Callback<Void>() {
+            Call<String> call = userService.registerUser(user); // 타입 일치 확인
+
+            call.enqueue(new Callback<String>() {
                 @Override
-                public void onResponse(Call<Void> call, Response<Void> response) {
-                    if (response.isSuccessful()) {
-                        Toast.makeText(SignupActivity.this, "회원가입 성공!", Toast.LENGTH_SHORT).show();
-                        // 로그인 화면이나 홈 화면으로 이동
+                public void onResponse(Call<String> call, Response<String> response) {
+                    if (response.isSuccessful() && response.body() != null) {
+                        Toast.makeText(SignupActivity.this, response.body(), Toast.LENGTH_SHORT).show(); // 서버 메시지 출력
+                        Intent intent = new Intent(SignupActivity.this, HomeActivity.class);
+                        startActivity(intent);
+                        finish();
                     } else {
-                        Toast.makeText(SignupActivity.this, "회원가입 실패!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(SignupActivity.this, "회원가입 실패: 서버 오류", Toast.LENGTH_SHORT).show();
                     }
                 }
 
                 @Override
-                public void onFailure(Call<Void> call, Throwable t) {
+                public void onFailure(Call<String> call, Throwable t) {
                     Toast.makeText(SignupActivity.this, "에러: " + t.getMessage(), Toast.LENGTH_SHORT).show();
                 }
             });
+
+
         });
     }
 }

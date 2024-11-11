@@ -10,7 +10,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
-import com.example.modunuri.ApiClient;
+import com.example.modunuri.network.ApiClient;
 import com.example.modunuri.R;
 import retrofit2.Call;
 import retrofit2.Callback;

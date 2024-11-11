@@ -1,4 +1,4 @@
-package com.example.modunuri;
+package com.example.modunuri.network;
 
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
