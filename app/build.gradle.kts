@@ -43,6 +43,7 @@ dependencies {
 
     // Retrofit and Gson dependencies
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
+    implementation ("com.squareup.okhttp3:okhttp:4.9.0") // OkHttp
     implementation("com.squareup.retrofit2:converter-gson:2.9.0")
     implementation ("com.google.android.material:material:1.9.0")  // 또는 최신 버전
     implementation(libs.retrofit)               // Retrofit
