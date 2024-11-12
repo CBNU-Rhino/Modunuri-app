@@ -10,7 +10,6 @@ import retrofit2.http.POST;
 
 public interface UserService {
 
-
     @POST("/users/signup")
     Call<ResponseBody> registerUser(@Body UserDTO userDTO);
 

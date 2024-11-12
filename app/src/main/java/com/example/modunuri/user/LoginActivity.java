@@ -59,7 +59,6 @@ public class LoginActivity extends AppCompatActivity {
                                     Toast.makeText(LoginActivity.this, "로그인 실패: 잘못된 사용자 정보입니다.", Toast.LENGTH_SHORT).show();
                                 }
                             }
-
                             @Override
                             public void onFailure(Call<Boolean> call, Throwable t) {
                                 Toast.makeText(LoginActivity.this, "로그인 상태 확인 실패: " + t.getMessage(), Toast.LENGTH_SHORT).show();
