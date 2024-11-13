@@ -47,6 +47,7 @@ dependencies {
     implementation("com.squareup.retrofit2:converter-gson:2.9.0")
     implementation ("com.google.android.material:material:1.9.0")  // 또는 최신 버전
     implementation ("com.squareup.picasso:picasso:2.71828")
+    implementation ("com.github.bumptech.glide:glide:4.15.1") // 최신 버전 확인 후 사용
 
     implementation(libs.retrofit)               // Retrofit
     implementation(libs.converter.gson)          // Gson converter

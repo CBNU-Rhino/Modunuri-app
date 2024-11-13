@@ -7,9 +7,10 @@ import java.util.List;
 
 public interface TouristService {
     @GET("/touristSpot/Json/api/tourist-info")
-    Call<TouristInfoResponse> getTouristInfo(
+    Call<List<TouristInfoDTO>> getTouristInfo(
             @Query("region") String region,
             @Query("sigungu") String sigungu,
             @Query("contentTypeId") int contentTypeId
     );
+
 }

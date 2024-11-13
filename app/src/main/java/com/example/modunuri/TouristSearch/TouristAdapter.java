@@ -1,6 +1,6 @@
+// TouristAdapter.java
 package com.example.modunuri.TouristSearch;
 
-// TouristAdapter.java
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,9 +8,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+import com.bumptech.glide.Glide;
 import com.example.modunuri.R;
-import com.squareup.picasso.Picasso;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,8 +17,8 @@ public class TouristAdapter extends RecyclerView.Adapter<TouristAdapter.TouristV
 
     private List<TouristInfoDTO> touristInfoList = new ArrayList<>();
 
-    public void setTouristInfoList(List<TouristInfoDTO> list) {
-        this.touristInfoList = list;
+    public void setTouristInfoList(List<TouristInfoDTO> touristInfoList) {
+        this.touristInfoList = touristInfoList;
         notifyDataSetChanged();
     }
 
@@ -32,16 +31,15 @@ public class TouristAdapter extends RecyclerView.Adapter<TouristAdapter.TouristV
 
     @Override
     public void onBindViewHolder(@NonNull TouristViewHolder holder, int position) {
-        TouristInfoDTO info = touristInfoList.get(position);
-        holder.title.setText(info.getTitle());
-        holder.address.setText(info.getAddr1());
+        TouristInfoDTO touristInfo = touristInfoList.get(position);
+        holder.titleTextView.setText(touristInfo.getTitle());
+        holder.addrTextView.setText(touristInfo.getAddr1() + " " + touristInfo.getAddr2());
 
-        // 이미지 로딩
-        if (!info.getFirstImage().isEmpty()) {
-            Picasso.get().load(info.getFirstImage()).into(holder.image);
-        } else {
-            holder.image.setImageResource(R.drawable.placeholder_image); // 기본 이미지 설정
-        }
+        // 이미지 로드 (Glide 라이브러리 사용)
+        Glide.with(holder.itemView.getContext())
+                .load(touristInfo.getFirstImage())
+                .placeholder(R.drawable.placeholder_image) // 기본 이미지 설정
+                .into(holder.firstImageView);
     }
 
     @Override
@@ -49,15 +47,15 @@ public class TouristAdapter extends RecyclerView.Adapter<TouristAdapter.TouristV
         return touristInfoList.size();
     }
 
-    public static class TouristViewHolder extends RecyclerView.ViewHolder {
-        TextView title, address;
-        ImageView image;
+    static class TouristViewHolder extends RecyclerView.ViewHolder {
+        TextView titleTextView, addrTextView;
+        ImageView firstImageView;
 
         public TouristViewHolder(@NonNull View itemView) {
             super(itemView);
-            title = itemView.findViewById(R.id.tourist_title);
-            address = itemView.findViewById(R.id.tourist_address);
-            image = itemView.findViewById(R.id.tourist_image);
+            titleTextView = itemView.findViewById(R.id.title_text_view);
+            addrTextView = itemView.findViewById(R.id.addr_text_view);
+            firstImageView = itemView.findViewById(R.id.first_image_view);
         }
     }
 }

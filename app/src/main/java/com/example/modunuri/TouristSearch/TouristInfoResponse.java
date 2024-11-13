@@ -1,29 +1,15 @@
 package com.example.modunuri.TouristSearch;
 
-import com.example.modunuri.TouristSearch.TouristInfoDTO;
-
 import java.util.List;
 
 public class TouristInfoResponse {
-    private ResponseData response;
+    private List<TouristInfoDTO> items;
 
     public List<TouristInfoDTO> getItems() {
-        if (response != null && response.body != null && response.body.items != null) {
-            return response.body.items.item;
-        }
-        return null;
+        return items;
     }
 
-    // 내부 클래스 정의
-    public static class ResponseData {
-        private BodyData body;
-    }
-
-    public static class BodyData {
-        private ItemsData items;
-    }
-
-    public static class ItemsData {
-        private List<TouristInfoDTO> item;
+    public void setItems(List<TouristInfoDTO> items) {
+        this.items = items;
     }
 }

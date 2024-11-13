@@ -116,12 +116,12 @@ public class TouristSearchActivity extends AppCompatActivity {
     }
 
     private void searchTouristInfo(String region, String sigungu, int contentTypeId) {
-        Call<TouristInfoResponse> call = touristService.getTouristInfo(region, sigungu, contentTypeId);
-        call.enqueue(new Callback<TouristInfoResponse>() {
+        Call<List<TouristInfoDTO>> call = touristService.getTouristInfo(region, sigungu, contentTypeId);
+        call.enqueue(new Callback<List<TouristInfoDTO>>() {
             @Override
-            public void onResponse(Call<TouristInfoResponse> call, Response<TouristInfoResponse> response) {
+            public void onResponse(Call<List<TouristInfoDTO>> call, Response<List<TouristInfoDTO>> response) {
                 if (response.isSuccessful() && response.body() != null) {
-                    List<TouristInfoDTO> touristInfoList = response.body().getItems();
+                    List<TouristInfoDTO> touristInfoList = response.body();
                     touristAdapter.setTouristInfoList(touristInfoList);
                 } else {
                     Toast.makeText(TouristSearchActivity.this, "검색 결과가 없습니다.", Toast.LENGTH_SHORT).show();
@@ -129,9 +129,10 @@ public class TouristSearchActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<TouristInfoResponse> call, Throwable t) {
+            public void onFailure(Call<List<TouristInfoDTO>> call, Throwable t) {
                 Toast.makeText(TouristSearchActivity.this, "검색 실패: " + t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
     }
+
 }
