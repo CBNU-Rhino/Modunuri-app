@@ -37,10 +37,13 @@ public class TouristAdapter extends RecyclerView.Adapter<TouristAdapter.TouristV
 
         // 이미지 로드 (Glide 라이브러리 사용)
         Glide.with(holder.itemView.getContext())
-                .load(touristInfo.getFirstImage())
-                .placeholder(R.drawable.placeholder_image) // 기본 이미지 설정
+                .load(touristInfo.getFirstImage()) // 이미지 URL
+                .placeholder(R.drawable.placeholder_image) // 로딩 중일 때 표시할 이미지
+                .error(R.drawable.error) // 에러 발생 시 표시할 이미지
+                .fallback(R.drawable.placeholder_image) // URL이 null일 경우 표시할 이미지
                 .into(holder.firstImageView);
     }
+
 
     @Override
     public int getItemCount() {
