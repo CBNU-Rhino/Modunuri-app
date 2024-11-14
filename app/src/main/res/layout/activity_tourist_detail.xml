@@ -62,4 +62,9 @@
         android:layout_height="wrap_content"
         android:text="점자블록"
         android:paddingTop="8dp" />
+    <WebView
+        android:id="@+id/mapWebView"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"/>
+
 </LinearLayout>
