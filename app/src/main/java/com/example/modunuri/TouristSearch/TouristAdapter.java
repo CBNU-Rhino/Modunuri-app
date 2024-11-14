@@ -1,6 +1,7 @@
 // TouristAdapter.java
 package com.example.modunuri.TouristSearch;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -35,14 +36,25 @@ public class TouristAdapter extends RecyclerView.Adapter<TouristAdapter.TouristV
         holder.titleTextView.setText(touristInfo.getTitle());
         holder.addrTextView.setText(touristInfo.getAddr1() + " " + touristInfo.getAddr2());
 
-        // 이미지 로드 (Glide 라이브러리 사용)
-        Glide.with(holder.itemView.getContext())
-                .load(touristInfo.getFirstImage()) // 이미지 URL
-                .placeholder(R.drawable.placeholder_image) // 로딩 중일 때 표시할 이미지
-                .error(R.drawable.error) // 에러 발생 시 표시할 이미지
-                .fallback(R.drawable.placeholder_image) // URL이 null일 경우 표시할 이미지
-                .into(holder.firstImageView);
+        // 이미지 URL이 비어 있는지 확인
+        String imageUrl = touristInfo.getFirstImage();
+        if (imageUrl == null || imageUrl.isEmpty()) {
+            // URL이 비어 있으면 placeholder 이미지 사용
+            Glide.with(holder.itemView.getContext())
+                    .load(R.drawable.placeholder_image)
+                    .into(holder.firstImageView);
+        } else {
+            // URL이 비어 있지 않으면 해당 URL로 이미지 로드
+            Glide.with(holder.itemView.getContext())
+                    .load(imageUrl)
+                    .placeholder(R.drawable.placeholder_image)
+                    .error(R.drawable.error)
+                    .fallback(R.drawable.placeholder_image)
+                    .into(holder.firstImageView);
+            Log.d("GlideImage", "Loading image from URL: " + imageUrl);
+        }
     }
+
 
 
     @Override
