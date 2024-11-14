@@ -4,13 +4,21 @@
     android:orientation="vertical"
     android:padding="16dp">
 
+    <ImageView
+        android:id="@+id/touristImageView"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:scaleType="centerCrop"
+        android:contentDescription="Tourist Image" />
+
     <TextView
         android:id="@+id/titleTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Title"
         android:textSize="18sp"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:paddingTop="8dp" />
 
     <TextView
         android:id="@+id/overviewTextView"
@@ -26,10 +34,32 @@
         android:text="Address"
         android:paddingTop="8dp" />
 
+    <!-- Additional accessibility information -->
     <TextView
-        android:id="@+id/accessibilityTextView"
+        android:id="@+id/parkingTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Accessibility Info"
+        android:text="장애인 주차구역"
+        android:paddingTop="8dp" />
+
+    <TextView
+        android:id="@+id/elevatorTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="엘리베이터"
+        android:paddingTop="8dp" />
+
+    <TextView
+        android:id="@+id/restroomTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="장애인 화장실"
+        android:paddingTop="8dp" />
+
+    <TextView
+        android:id="@+id/braileBlockTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="점자블록"
         android:paddingTop="8dp" />
 </LinearLayout>
