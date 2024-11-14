@@ -1,7 +1,6 @@
 // TouristAdapter.java
 package com.example.modunuri.TouristSearch;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +16,17 @@ import java.util.List;
 public class TouristAdapter extends RecyclerView.Adapter<TouristAdapter.TouristViewHolder> {
 
     private List<TouristInfoDTO> touristInfoList = new ArrayList<>();
+    private OnItemClickListener listener;
+
+    // OnItemClickListener 인터페이스 정의
+    public interface OnItemClickListener {
+        void onItemClick(TouristInfoDTO touristInfo);
+    }
+
+    // 리스너 설정 메서드
+    public void setOnItemClickListener(OnItemClickListener listener) {
+        this.listener = listener;
+    }
 
     public void setTouristInfoList(List<TouristInfoDTO> touristInfoList) {
         this.touristInfoList = touristInfoList;
@@ -36,26 +46,21 @@ public class TouristAdapter extends RecyclerView.Adapter<TouristAdapter.TouristV
         holder.titleTextView.setText(touristInfo.getTitle());
         holder.addrTextView.setText(touristInfo.getAddr1() + " " + touristInfo.getAddr2());
 
-        // 이미지 URL이 비어 있는지 확인
-        String imageUrl = touristInfo.getFirstImage();
-        if (imageUrl == null || imageUrl.isEmpty()) {
-            // URL이 비어 있으면 placeholder 이미지 사용
-            Glide.with(holder.itemView.getContext())
-                    .load(R.drawable.placeholder_image)
-                    .into(holder.firstImageView);
-        } else {
-            // URL이 비어 있지 않으면 해당 URL로 이미지 로드
-            Glide.with(holder.itemView.getContext())
-                    .load(imageUrl)
-                    .placeholder(R.drawable.placeholder_image)
-                    .error(R.drawable.error)
-                    .fallback(R.drawable.placeholder_image)
-                    .into(holder.firstImageView);
-            Log.d("GlideImage", "Loading image from URL: " + imageUrl);
-        }
+        // 이미지 로드 (Glide 사용)
+        Glide.with(holder.itemView.getContext())
+                .load(touristInfo.getFirstImage())
+                .placeholder(R.drawable.placeholder_image)
+                .error(R.drawable.error)
+                .fallback(R.drawable.placeholder_image)
+                .into(holder.firstImageView);
+
+        // 아이템 클릭 이벤트 설정
+        holder.itemView.setOnClickListener(v -> {
+            if (listener != null) {
+                listener.onItemClick(touristInfo);
+            }
+        });
     }
-
-
 
     @Override
     public int getItemCount() {

@@ -29,6 +29,8 @@
         <activity android:name=".user.LoginActivity" android:exported="true"/>
         <activity android:name=".user.SignupActivity" android:exported="true"/>
         <activity android:name=".TouristSearch.TouristSearchActivity" />
+        <activity android:name=".TouristSearch.TouristDetailActivity" android:exported="true" />
+
 
     </application>
 

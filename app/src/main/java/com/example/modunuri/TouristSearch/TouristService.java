@@ -13,4 +13,9 @@ public interface TouristService {
             @Query("contentTypeId") int contentTypeId
     );
 
+    @GET("/touristSpot/tourist-information")
+    Call<TouristInfoResponse> getTouristInformation(
+            @Query("contentId") String contentId,
+            @Query("contentTypeId") String contentTypeId
+    );
 }

@@ -1,5 +1,7 @@
+// TouristSearchActivity.java
 package com.example.modunuri.TouristSearch;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -49,6 +51,14 @@ public class TouristSearchActivity extends AppCompatActivity {
 
         // Retrofit 설정 및 TouristService 초기화
         touristService = ApiClient.getClient("http://10.0.2.2:8080").create(TouristService.class);
+
+        // Adapter의 OnItemClickListener 설정
+        touristAdapter.setOnItemClickListener(touristInfo -> {
+            Intent intent = new Intent(TouristSearchActivity.this, TouristDetailActivity.class);
+            intent.putExtra("contentId", touristInfo.getContentId());
+            intent.putExtra("contentTypeId", touristInfo.getContentTypeId());
+            startActivity(intent);
+        });
 
         // 지역 데이터 정의
         initializeRegionData();
@@ -134,5 +144,4 @@ public class TouristSearchActivity extends AppCompatActivity {
             }
         });
     }
-
 }

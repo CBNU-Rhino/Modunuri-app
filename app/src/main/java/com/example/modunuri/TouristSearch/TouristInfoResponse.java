@@ -1,15 +1,27 @@
 package com.example.modunuri.TouristSearch;
 
-import java.util.List;
+import com.google.gson.annotations.SerializedName;
 
 public class TouristInfoResponse {
-    private List<TouristInfoDTO> items;
+    @SerializedName("touristInfo")
+    private TouristInfoWithAccessibilityDTO touristInfo;
 
-    public List<TouristInfoDTO> getItems() {
-        return items;
+    @SerializedName("username")
+    private String username;
+
+    public TouristInfoWithAccessibilityDTO getTouristInfo() {
+        return touristInfo;
     }
 
-    public void setItems(List<TouristInfoDTO> items) {
-        this.items = items;
+    public void setTouristInfo(TouristInfoWithAccessibilityDTO touristInfo) {
+        this.touristInfo = touristInfo;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 }
