@@ -30,7 +30,9 @@
         <activity android:name=".user.SignupActivity" android:exported="true"/>
         <activity android:name=".TouristSearch.TouristSearchActivity" />
         <activity android:name=".TouristSearch.TouristDetailActivity" android:exported="true" />
-
+        <meta-data
+            android:name="com.kakao.vectormap.KAKAO_MAP_KEY"
+            android:value="KAKAO_MAP_KEY"/>
 
     </application>
 
